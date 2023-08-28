@@ -19,8 +19,8 @@ function App() {
   };  
 
   return (
-    <div className='bg-info bg-gradient' style={{height: '100vh'}}>
-      <div className='text-center display-5 fw-bold pt-5'>
+    <div className='bg-info bg-gradient' style={{minHeight: '100vh'}}>
+      <div className='text-center text-warning display-5 fw-bold pt-5'>
         Todo App
       </div>
       <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd} />
