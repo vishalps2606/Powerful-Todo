@@ -42,8 +42,7 @@ const SingleTodo = ({todo, todos, setTodos}:Props) => {
     
 
   return (
-        <div className="col-md-6">
-        <form action="" className="form-control rounded-pill shadow d-flex justify-content-between px-4 mt-4 py-2" onSubmit={(e) => handleEdit(e, todo.id)}>
+        <form action="" className="form-control rounded-pill shadow d-flex justify-content-between px-4 my-2 py-2" onSubmit={(e) => handleEdit(e, todo.id)}>
 
             {
                 edit ? (
@@ -74,7 +73,6 @@ const SingleTodo = ({todo, todos, setTodos}:Props) => {
                 </span>
             </div>
         </form>
-        </div>    
   )
 }
 
