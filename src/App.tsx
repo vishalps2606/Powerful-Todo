@@ -3,7 +3,7 @@ import './App.css';
 import InputField from './components/InputField';
 import { Todo } from './Todo';
 import TodoList from './components/TodoList';
-import { DragDropContext } from 'react-beautiful-dnd';
+import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 
 function App() {
 
@@ -20,9 +20,39 @@ function App() {
     }
   };  
 
+  const onDragEnd = (result: DropResult) => {
+      const{ source, destination} = result;
+
+      if(!destination || (destination.droppableId === source.droppableId && destination.index == source.index))
+        return;
+
+        let add,
+        active = todos,
+        complete = completedTodos;
+
+        if(source.droppableId === 'TodosList'){
+          add = active[source.index];
+          active.splice(source.index, 1);
+        }
+        else{
+          add = complete[source.index];
+          complete.splice(source.index, 1);
+        }
+
+        if(destination.droppableId === 'TodosList'){
+          active.splice(destination.index, 0, add);
+        }
+        else{
+          complete.splice(destination.index, 0, add);
+        }
+
+        setCompletedTodos(complete);
+        setTodos(active);
+  };
+
   return (
 
-    <DragDropContext onDragEnd={() => {}}>
+    <DragDropContext onDragEnd={onDragEnd}>
         <div className='bg-info bg-gradient' style={{minHeight: '100vh'}}>
           <div className='text-center text-white display-5 fw-bold pt-5'>
             Todo App
